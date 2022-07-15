@@ -1,33 +1,44 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 class Doctor {
-    private final String name;
-    private final String specialty;
-    private List<Patient> patients = new ArrayList<Patient>();
+    private String name;
+    private String specialty;
+    private boolean registered;
+    private Queue<Patient> patients;
     private int healingPower;
 
     public Doctor(String name, String specialty) {
         this.name = name;
         this.specialty = specialty;
+        this.registered = true;
+        this.patients = new ArrayDeque<Patient>();
     }
+
     public String getName() {
         return name;
     }
+
     public String getSpecialty() {
         return specialty;
     }
-    public List<Patient> getPatients() {
-        return patients;
+
+    public boolean isRegistered() {
+        return registered;
     }
-    @Override
-    public String toString() {
-        return "Doctor [name=" + name + ", patients=" + patients + ", specialty=" + specialty + "]";
-    }
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
-    }
-    public void addPatient(Patient patient){
+
+    public void addPatient(Patient patient) {
         this.patients.add(patient);
     }
+
+    public int getPatientCount() {
+        return this.patients.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor [name=" + name + ", patients=" + patients + ", registered=" + registered + ", specialty="
+                + specialty + "]";
+    }
+
 }

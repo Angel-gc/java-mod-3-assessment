@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.List;
 import java.util.Queue;
 
 class Doctor {
@@ -7,6 +8,7 @@ class Doctor {
     private SpecialtiesEnum enumSpecialty;
     private boolean registered;
     private Queue<Patient> patients;
+
 
     private SpecialtiesEnum healing;
 
@@ -38,6 +40,14 @@ class Doctor {
                     break;
             }
         }
+    // Update the patient's health index when they go through a round of treatment
+//    public void treatPatient(Patient patient) {
+//        // once user enters patient, check if the patient is in a list
+//        if (!patients.contains(patient)) {
+//            System.out.println("Sorry Patient doesn't exist.");
+//        }
+//            treatPatient(patient);
+//    }
 
     public String getName() {
         return name;

@@ -1,21 +1,14 @@
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 import java.util.Map;
-
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Set;
-
 import javax.swing.JOptionPane;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HospitalWorld {
+    static List<Patient> patients;
     public static void main(String[] args) throws Exception {
         UserOutputService userOutputService = new SysOutUserOutputService();
         try (UserInputService userInputService = new ScannerUserInputService(userOutputService);) {
@@ -29,6 +22,54 @@ public class HospitalWorld {
             String result = hospitalStringifier.getStringFromHospital(hospital);
             userOutputService.printMessage(result);
         }
+
+
+    }
+//        Allow the user to select a patient to go through a round of treatment
+          public Patient selectPatient(){
+              for (Patient patient: patients){
+                System.out.println(patient);
+              }
+              Input sc = Input.getInstance();
+              int i = sc.getInt("Please select a patient from above to undergo treatment by typing in their index.");
+              if (patients.contains(patients.get(i))){
+                  return patients.get(i);
+              }
+              System.out.println("Sorry that patient doesn't exist.");
+              return null;
+        }
+        //should be using observer for this
+        public void dismissPatientFromHospital(){
+
+        }
+    static void saveListAsJSON(List<Patient> personList) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(personList);
+
+        mapper.writeValue(new File("people.json"), personList);
+        System.out.println("This is our Json output: " + json);
+    }
+    public static List<Patient> readJson() throws JsonProcessingException {
+        try {
+            return Arrays.asList(new ObjectMapper().readValue(new File("people.json"), Patient[].class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+/**
+ * Immutable!
+ */
+
+//        User selects a patient index that's outside the range of existing patients (e.g. user selects a patient not on the patient list)
+
+//        Dismiss a patient from the hospital once their health index reaches 100
+//        Allow the user to stop the virtual world and restore it to its last state when they start the virtual world again
+//        Allow the user to admit new patients at the hospital
+
+
+
         // Ask user for hospital name
         // How to ask?
         // How to take in answer?
@@ -64,30 +105,3 @@ public class HospitalWorld {
         // Let's think really hard...
         // What's the relationship between hospitals and doctors and patients?
         // What Collections should we use?
-
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Immutable!
- */
-
-
-
-

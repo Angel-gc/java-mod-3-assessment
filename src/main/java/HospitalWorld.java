@@ -21,12 +21,11 @@ public class HospitalWorld {
             HospitalStringifier hospitalStringifier = new HospitalStringifier();
             String result = hospitalStringifier.getStringFromHospital(hospital);
             userOutputService.printMessage(result);
+            selectPatient();
         }
-
-
     }
 //        Allow the user to select a patient to go through a round of treatment
-          public Patient selectPatient(){
+          public static Patient selectPatient(){
               for (Patient patient: patients){
                 System.out.println(patient);
               }
@@ -38,10 +37,21 @@ public class HospitalWorld {
               System.out.println("Sorry that patient doesn't exist.");
               return null;
         }
-        //should be using observer for this
+        //should be using observer for this, not sure if this works
         public void dismissPatientFromHospital(){
-
+            for (Patient patient: patients){
+               int status =  patient.getHealthIndex();
+               if (status >= 100){
+                   System.out.println("you completely healed, you are discharged!");
+                   patients.remove(patient);
+                }
+               else if (status <= 0){
+                   System.out.println("You are deceased, RIP.");
+                   patients.remove(patient);
+               }
+            }
         }
+
     static void saveListAsJSON(List<Patient> personList) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(personList);

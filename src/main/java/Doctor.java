@@ -8,8 +8,6 @@ class Doctor {
     private SpecialtiesEnum enumSpecialty;
     private boolean registered;
     private Queue<Patient> patients;
-
-
     private SpecialtiesEnum healing;
 
     public Doctor(String name, String specialty) {

@@ -1,12 +1,32 @@
-public class Ailment {
-    private int startingHealthIndex;
-    private String name;
-    private String associatedSpecialty;
+public enum Ailment {
 
-    public Ailment(int startingHealthIndex, String name, String associatedSpecialty) {
+    COLD(70, false, SpecialtiesEnum.PEDIATRICS),
+    ACNE(50, true, SpecialtiesEnum.DERMATOLOGY),
+    HEADACHE(90, true, SpecialtiesEnum.NEUROLOGY),
+    CANCER(20, false, SpecialtiesEnum.ONCOLOGY),
+    ARTHRITIS(40, false, SpecialtiesEnum.ORTHOPEDICS);
+
+    private int startingHealthIndex;
+    private boolean cure;
+    private SpecialtiesEnum specialtyMatch;
+
+    private Ailment(int startingHealthIndex, boolean cure, SpecialtiesEnum specialtyMatch) {
         this.startingHealthIndex = startingHealthIndex;
-        this.name = name;
-        this.associatedSpecialty = associatedSpecialty;
+        this.cure = cure;
+        this.specialtyMatch = specialtyMatch;
     }
 
+    public int getStartingHealthIndex() {
+        return startingHealthIndex;
+    }
+
+    public void setStartingHealthIndex(int startingHealthIndex) {
+        this.startingHealthIndex = startingHealthIndex;
+    }
+    public SpecialtiesEnum getSpecialtyMatch() {
+        return specialtyMatch;
+    }
+    public boolean isCure() {
+        return cure;
+    }
 }

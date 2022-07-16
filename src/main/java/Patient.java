@@ -1,7 +1,9 @@
 class Patient {
     private String name;
     private String need;
+
     private int healthIndex;
+
     private Ailment disease;
 
     public Patient(String name, String need) {
@@ -10,22 +12,54 @@ class Patient {
     }
 
     public Patient (int healthIndex, Ailment disease){
-        this.healthIndex = healthIndex;
         this.disease = disease;
+        this.healthIndex = 0;
+        switch (disease.getStartingHealthIndex()){
+            case 20:
+                disease.setStartingHealthIndex(20);
+                break;
+            case 70:
+                disease.setStartingHealthIndex(70);
+                break;
+            case 90:
+                disease.setStartingHealthIndex(90);
+                break;
+            case 50:
+                disease.setStartingHealthIndex(50);
+                break;
+            case 40:
+                disease.setStartingHealthIndex(40);
+                break;
+        }
     }
     public void receiveTreatment(int treatment){
         this.healthIndex += treatment;
     }
-    public void healed(){
-        this.healthIndex = 100;
+    public boolean healed(){
+       return this.healthIndex >= 100;
     }
-    public void died(){
-        this.healthIndex = 0;
+    public boolean died(){
+        return this.healthIndex <= 0;
     }
-
 
     public String getName() {
         return name;
+    }
+    public int getHealthIndex() {
+        return healthIndex;
+    }
+
+    public void setHealthIndex(int healthIndex) {
+        this.healthIndex = healthIndex;
+    }
+
+
+    public Ailment getDisease() {
+        return disease;
+    }
+
+    public void setDisease(Ailment disease) {
+        this.disease = disease;
     }
 
     public String getNeed() {

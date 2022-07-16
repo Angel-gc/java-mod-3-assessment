@@ -1,34 +1,31 @@
 public enum SpecialtiesEnum {
-    DERMATOLOGY("dermatology", "acne", 3, true ),
-    CARDIOLOGY("cardiology", "heart disease", 5, true),
-    NEUROLOGY("neurology", "tumor", 6 , true),
-    ONCOL0GY("radiology", "cancer",7 , false),
-    PEDIATRICS("pediatrics", "cold",2, true);
+    DERMATOLOGY(5, 10),
+    ONCOLOGY(4, 20),
+    PEDIATRICS(2, 15),
+    ORTHOPEDICS(3, 20),
+    NEUROLOGY(1, 50);
 
-    String specialty;
-    int numberOfTreatmentsReq;
-    boolean curePossible;
+    private int numberOfTreatments;
+    private int healingPower;
 
-    String disease;
-
-    SpecialtiesEnum(String specialty, String disease, int numberOfTreatmentsReq, boolean curePossible) {
-        this.specialty = specialty;
-        this.disease = disease;
-        this.numberOfTreatmentsReq = numberOfTreatmentsReq;
-        this.curePossible = curePossible;
-    }
-    public String getLabel(){
-        return specialty;
-    }
-    public String getSpecialty(){
-        return specialty;
+    private SpecialtiesEnum(int numberOfTreatments, int healingPower) {
+        this.numberOfTreatments = numberOfTreatments;
+        this.healingPower = healingPower;
     }
 
-    public int getNumberOfTreatmentsReq() {
-        return numberOfTreatmentsReq;
+    public int getNumberOfTreatments() {
+        return numberOfTreatments;
+    }
+    public int getHealingPower() {
+        return healingPower;
     }
 
-    public boolean isCurePossible() {
-        return curePossible;
+    public void setHealingPower(int healingPower) {
+        this.healingPower = healingPower;
+    }
+
+    public void setNumberOfTreatments(int numberOfTreatments) {
+        this.numberOfTreatments = numberOfTreatments;
     }
 }
+

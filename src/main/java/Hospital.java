@@ -6,12 +6,23 @@ import java.util.Set;
 class Hospital {
     private String name;
     private Map<String, Set<Doctor>> specialtyToDoctors;
+    private Map<Ailment, SpecialtiesEnum> ailmentMap;
+
 
     public Hospital(String name) {
         this.name = name;
         this.specialtyToDoctors = new HashMap<>();
+//        this.doctors = new LinkedList<Doctor>();
+//        this.patients = new LinkedList<Patient>();
+        this.ailmentMap = new HashMap<Ailment, SpecialtiesEnum>();
+        ailmentMap.put(Ailment.ACNE, SpecialtiesEnum.DERMATOLOGY);
+        ailmentMap.put(Ailment.ARTHRITIS, SpecialtiesEnum.ORTHOPEDICS);
+        ailmentMap.put(Ailment.CANCER, SpecialtiesEnum.ONCOLOGY);
+        ailmentMap.put(Ailment.COLD, SpecialtiesEnum.PEDIATRICS);
+        ailmentMap.put(Ailment.HEADACHE, SpecialtiesEnum.NEUROLOGY);
+//        patientMap = new HashMap<>();
+//        doctorMap = new HashMap<>();
     }
-
     public String getName() {
         return name;
     }
@@ -51,6 +62,9 @@ class Hospital {
             }
         }
         return chosenDoctor;
+    }
+    public void createDoctor(){
+
     }
 
     @Override

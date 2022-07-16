@@ -4,9 +4,11 @@ import java.util.Queue;
 class Doctor {
     private String name;
     private String specialty;
+    private SpecialtiesEnum enumSpecialty;
     private boolean registered;
     private Queue<Patient> patients;
-    private int healingPower;
+
+    private SpecialtiesEnum healing;
 
     public Doctor(String name, String specialty) {
         this.name = name;
@@ -14,6 +16,28 @@ class Doctor {
         this.registered = true;
         this.patients = new ArrayDeque<Patient>();
     }
+    public Doctor (SpecialtiesEnum healing, SpecialtiesEnum enumSpecialty) {
+        this.enumSpecialty = enumSpecialty;
+        this.healing = healing;
+
+            switch(enumSpecialty.getNumberOfTreatments()) {
+                case 5:
+                    healing.setHealingPower(10);
+                    break;
+                case 2:
+                    healing.setHealingPower(15);
+                    break;
+                case 3:
+                    healing.setHealingPower(20);
+                    break;
+                case 4:
+                    healing.setHealingPower(20);
+                    break;
+                case 1:
+                    healing.setHealingPower(50);
+                    break;
+            }
+        }
 
     public String getName() {
         return name;
@@ -42,3 +66,4 @@ class Doctor {
     }
 
 }
+

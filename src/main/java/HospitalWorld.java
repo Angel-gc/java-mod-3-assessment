@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.Map;
-import javax.swing.JOptionPane;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,41 +14,16 @@ public class HospitalWorld {
             DoctorBuilderService doctorBuilderService = new DoctorBuilderService(userInputService);
             PatientBuilderService patientBuilderService = new PatientBuilderService(userInputService);
             HospitalBuilderService hospitalBuilderService = new HospitalBuilderService(userInputService,
-                    doctorBuilderService, patientBuilderService);
+                    userOutputService, doctorBuilderService, patientBuilderService);
             Hospital hospital = hospitalBuilderService.createHospital();
             HospitalStringifier hospitalStringifier = new HospitalStringifier();
             String result = hospitalStringifier.getStringFromHospital(hospital);
             userOutputService.printMessage(result);
-            selectPatient();
         }
     }
 //        Allow the user to select a patient to go through a round of treatment
-          public static Patient selectPatient(){
-              for (Patient patient: patients){
-                System.out.println(patient);
-              }
-              Input sc = Input.getInstance();
-              int i = sc.getInt("Please select a patient from above to undergo treatment by typing in their index.");
-              if (patients.contains(patients.get(i))){
-                  return patients.get(i);
-              }
-              System.out.println("Sorry that patient doesn't exist.");
-              return null;
-        }
+
         //should be using observer for this, not sure if this works
-        public void dismissPatientFromHospital(){
-            for (Patient patient: patients){
-               int status =  patient.getHealthIndex();
-               if (status >= 100){
-                   System.out.println("you completely healed, you are discharged!");
-                   patients.remove(patient);
-                }
-               else if (status <= 0){
-                   System.out.println("You are deceased, RIP.");
-                   patients.remove(patient);
-               }
-            }
-        }
 
     static void saveListAsJSON(List<Patient> personList) throws Exception {
         ObjectMapper mapper = new ObjectMapper();

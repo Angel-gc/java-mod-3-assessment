@@ -1,57 +1,26 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
 class Doctor {
     private String name;
-    private String specialty;
-    private SpecialtiesEnum enumSpecialty;
+    private Specialty specialty;
     private boolean registered;
-    private Queue<Patient> patients;
-    private SpecialtiesEnum healing;
+    List<Patient> patients;
 
-    public Doctor(String name, String specialty) {
+    public Doctor(String name, Specialty specialty) {
         this.name = name;
         this.specialty = specialty;
         this.registered = true;
-        this.patients = new ArrayDeque<Patient>();
+        patients = new ArrayList<>();
     }
-    public Doctor (SpecialtiesEnum healing, SpecialtiesEnum enumSpecialty) {
-        this.enumSpecialty = enumSpecialty;
-        this.healing = healing;
-
-            switch(enumSpecialty.getNumberOfTreatments()) {
-                case 5:
-                    healing.setHealingPower(10);
-                    break;
-                case 2:
-                    healing.setHealingPower(15);
-                    break;
-                case 3:
-                    healing.setHealingPower(20);
-                    break;
-                case 4:
-                    healing.setHealingPower(20);
-                    break;
-                case 1:
-                    healing.setHealingPower(50);
-                    break;
-            }
-        }
-    // Update the patient's health index when they go through a round of treatment
-//    public void treatPatient(Patient patient) {
-//        // once user enters patient, check if the patient is in a list
-//        if (!patients.contains(patient)) {
-//            System.out.println("Sorry Patient doesn't exist.");
-//        }
-//            treatPatient(patient);
-//    }
 
     public String getName() {
         return name;
     }
 
-    public String getSpecialty() {
+    public Specialty getSpecialty() {
         return specialty;
     }
 
@@ -69,7 +38,7 @@ class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor [name=" + name + ", patients=" + patients + ", registered=" + registered + ", specialty="
+        return "Doctor [name=" + name + ", patients=" + ", registered=" + registered + ", specialty="
                 + specialty + "]";
     }
 

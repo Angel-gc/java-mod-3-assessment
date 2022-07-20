@@ -7,8 +7,8 @@ class DoctorBuilderService {
 
     public Doctor createDoctor() {
         String name = userInputService.getUserInput("What's the doc's name?");
-        String specialty = userInputService.getUserInput("What's the doc's specialty?");
-        Doctor doctor = new Doctor(name, specialty);
+        String specialtyName = userInputService.getUserInput("What's the doc's specialty?");
+        Doctor doctor = new Doctor(name, new Specialty(specialtyName, 5));
         return doctor;
     }
 }
